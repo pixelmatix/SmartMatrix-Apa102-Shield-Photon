@@ -7826,8 +7826,8 @@ LETTER landscape</description>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
 <part name="J1" library="rcl" deviceset="R-US_" device="R0603" value="0-DNP"/>
 <part name="JP3" library="eclibrary" deviceset="PARTICLE_PHOTON_TEMPLATES" device="_PIXELMATIX" value="PARTICLE_PHOTON_TEMPLATES_PIXELMATIX"/>
-<part name="GND2" library="supply1" deviceset="GND" device=""/>
 <part name="FRAME1" library="frames" deviceset="LETTER_L" device=""/>
+<part name="GND1" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -7846,16 +7846,19 @@ Alt: R1 DNP, R2 47k, J1 0-ohm
 LED_EN controls drivers, active high</text>
 <text x="152.4" y="93.98" size="1.778" layer="94">Optionally add jumper to JP8/JP6 to power strip through VUSB</text>
 <text x="152.4" y="91.44" size="1.778" layer="94">C2 may be unnecessary, will test</text>
-<text x="121.92" y="30.48" size="1.778" layer="91">add a SMT jumper so
+<text x="121.92" y="27.94" size="1.778" layer="91">add a SMT jumper so
 0-ohm resistor isn't needed
 if populated?</text>
 <text x="170.18" y="-15.24" size="3.175" layer="94">SmartMatrix APA102 Shield for Photon</text>
-<text x="170.18" y="-20.32" size="3.048" layer="94">Pixelmatix 2016 CC BY-SA</text>
+<text x="170.18" y="-20.32" size="3.048" layer="94">Pixelmatix 2016 CC BY-SA 4.0</text>
 <text x="256.54" y="-38.1" size="3.048" layer="94">V3</text>
 <text x="68.58" y="129.54" size="3.556" layer="94">Photon</text>
 <text x="185.42" y="127" size="3.556" layer="94">Power</text>
 <text x="187.96" y="60.96" size="3.556" layer="94">APA102 Buffers</text>
 <text x="53.34" y="43.18" size="3.556" layer="94">microSD Card</text>
+<text x="121.92" y="40.64" size="1.778" layer="91">what if there's no power on VEXT,
+will it hurt the buffers to drive
+them with 3.3V?</text>
 </plain>
 <instances>
 <instance part="GND3" gate="1" x="236.22" y="30.48"/>
@@ -7901,9 +7904,9 @@ if populated?</text>
 <instance part="GND7" gate="1" x="73.66" y="-7.62"/>
 <instance part="J1" gate="G$1" x="170.18" y="20.32"/>
 <instance part="JP3" gate="G$1" x="78.74" y="104.14"/>
-<instance part="GND2" gate="1" x="48.26" y="86.36"/>
 <instance part="FRAME1" gate="G$1" x="20.32" y="-45.72"/>
 <instance part="FRAME1" gate="G$2" x="167.64" y="-45.72"/>
+<instance part="GND1" gate="1" x="106.68" y="81.28"/>
 </instances>
 <busses>
 </busses>
@@ -7947,7 +7950,7 @@ if populated?</text>
 <pinref part="JP3" gate="G$1" pin="VIN"/>
 </segment>
 </net>
-<net name="V3.3" class="0">
+<net name="3V3" class="0">
 <segment>
 <wire x1="83.82" y1="27.94" x2="68.58" y2="27.94" width="0.1524" layer="91"/>
 <label x="76.2" y="27.94" size="1.778" layer="95"/>
@@ -8005,10 +8008,10 @@ if populated?</text>
 <pinref part="U1" gate="G$1" pin="SHIELD2"/>
 </segment>
 <segment>
-<wire x1="48.26" y1="88.9" x2="48.26" y2="116.84" width="0.1524" layer="91"/>
-<wire x1="48.26" y1="116.84" x2="55.88" y2="116.84" width="0.1524" layer="91"/>
-<pinref part="GND2" gate="1" pin="GND"/>
-<pinref part="JP3" gate="G$1" pin="GND@2"/>
+<pinref part="JP3" gate="G$1" pin="GND@21"/>
+<wire x1="106.68" y1="83.82" x2="106.68" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="106.68" y1="111.76" x2="99.06" y2="111.76" width="0.1524" layer="91"/>
+<pinref part="GND1" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="LED_CLK" class="0">
@@ -8148,6 +8151,12 @@ if populated?</text>
 <wire x1="185.42" y1="53.34" x2="165.1" y2="53.34" width="0.1524" layer="91"/>
 <pinref part="IC3" gate="A" pin="I0"/>
 <label x="167.64" y="53.34" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$1" class="0">
+<segment>
+<wire x1="48.26" y1="116.84" x2="55.88" y2="116.84" width="0.1524" layer="91"/>
+<pinref part="JP3" gate="G$1" pin="GND@2"/>
 </segment>
 </net>
 </nets>
